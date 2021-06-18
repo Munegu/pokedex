@@ -16,7 +16,7 @@
   <div >
     
       <ion-list>
-        <ion-item *ngFor="let pokemon of pokemons" button (click)="getDetails()">
+        <ion-item *ngFor="let pokemon of pokemons" button (click)="getDetails(pokemon.id)">
           <ion-img [src]="getImage(pokemon.id)" ></ion-img>
           <ion-label class="ion-text-center">{{ pokemon.name }}</ion-label>
         </ion-item>

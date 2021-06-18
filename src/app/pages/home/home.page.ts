@@ -1,7 +1,10 @@
-import { PokemonList } from './../../Models/pokemon-list';
+import { PokemonService } from './../../services/pokemons/pokemon.service';
+import { PokemonList } from '../../models/pokemon-list';
 import { POKEDEX } from './../../utils/constants';
 import { Component, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -15,11 +18,13 @@ export class HomePage  {
   
   pokemons: PokemonList[] = POKEDEX ;
 
-  constructor() {
+  constructor(private router: Router,
+    private pokemonservice: PokemonService
+    ) {
   }
 
   getImage(id: number): string {
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+   return  this.pokemonservice.getImage(id);
   }
 
   loadData(event) {
@@ -36,8 +41,8 @@ export class HomePage  {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
 
-  getDetails () {
-    console.log('getDetails');
+  getDetails (id: number) {
+    this.router.navigate(['/details', id]);;
   }
 
 }

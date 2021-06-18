@@ -1,7 +1,7 @@
-import { PokemonList } from "../Models/pokemon-list"
+import { PokemonList } from "../models/pokemon-list"
 
 export const POKEDEX: PokemonList[] = [
-    {id: 1 , name: 'Bulbizarre' },
+    { id: 1 , name: 'Bulbizarre' },
     { id: 2 , name:	'Herbizarre' },
     { id: 3 , name:	'Florizarre' },
     { id: 4 , name:	'Salamèche' },
@@ -153,3 +153,27 @@ export const POKEDEX: PokemonList[] = [
     { id: 150 , name: 'Mewtwo' },
     { id: 151 , name: 'Mew' }
 ]
+
+export const TYPES:{[key: string]: string} = {
+    'normal': 'normal',
+    'fighting': 'combat',
+    'flying': 'vol',
+    'poison': 'poison',
+    'ground': 'sol',
+    'rock': 'roche',
+    'bug': 'insecte',
+    'ghost': 'spectre',
+    'steel': 'acier',
+    'fire': 'feu',
+    'water': 'eau',
+    'grass': 'plante',
+    'electric': 'électrik',
+    'psychic': 'psy',
+    'ice': 'glace',
+    'dragon': 'dragon',
+    'dark': 'ténèbre',
+    'fairy': 'fée',
+    'unknown': 'inconnu',
+    'shadow': 'obscure'
+
+}
