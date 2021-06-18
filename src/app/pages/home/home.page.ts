@@ -1,10 +1,8 @@
+import { POKEDEX } from 'src/app/utils/constants';
 import { PokemonService } from './../../services/pokemons/pokemon.service';
 import { PokemonList } from '../../models/pokemon-list';
-import { POKEDEX } from './../../utils/constants';
-import { Component, ViewChild } from '@angular/core';
-import { IonInfiniteScroll } from '@ionic/angular';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
 
 
 @Component({
@@ -13,9 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage  {
-  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
-  
   pokemons: PokemonList[] = POKEDEX ;
 
   constructor(private router: Router,
@@ -27,20 +23,22 @@ export class HomePage  {
    return  this.pokemonservice.getImage(id);
   }
 
-  loadData(event) {
-    setTimeout(() => {
-      console.log('Done');
-      event.target.complete();
-      if (this.pokemons.length === 1000) {
-        event.target.disabled = true;
+  filterList(event) {
+
+    this.pokemons= POKEDEX;
+    const searchTerm = event.srcElement.value;
+
+    if (!searchTerm) {
+      return;
+    }
+  
+    this.pokemons = this.pokemons.filter(pokemon => {
+      if (pokemon.name && searchTerm) {
+        return (pokemon.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
       }
-    }, 500);
-  }
+    });
 
-  toggleInfiniteScroll() {
-    this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
-
   getDetails (id: number) {
     this.router.navigate(['/details', id]);;
   }
